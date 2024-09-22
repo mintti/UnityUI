@@ -8,79 +8,74 @@ namespace ImUGUISample.Selector
 {
     public class SelectionItem : MonoBehaviour
     {
-        [SerializeField] private Button _selectButton;
-        [SerializeField] private TextMeshProUGUI _itemLavel;
         [SerializeField] private GameObject _selectedOB;
 
         public Action<int> OnUpdateSelection;
         public Action<int> OnConfirmSelection;
 
         private int _index;
-        private bool _canSelect;
+        private bool _canSelect = true;
         private bool _isSelected;
 
-        private void Start()
+        private bool IsSelected
         {
-            _selectButton.onClick.AddListener(OnClicked);
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                SetSelectedMark(value);
+            }
         }
 
+        /// <summary>
+        /// 현재 선택지의 인덱스 지정 
+        /// </summary>
         public void Init(int index)
         {
             _index = index;
             Clear();
         }
 
-        public void Show()
+        public void UpdateItem(bool isActive)
         {
-            gameObject.SetActive(true);
-        }
-        
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
-        
-        public void SetData(ItemData data)
-        {
-            _itemLavel.text = data.Name;
-
-            bool isActive = data.CheckUsable();
             _canSelect = isActive;
-            
             Clear();
         }
 
-        private void OnClicked()
+        public void OnClicked()
         {
             if (!_canSelect)
             {
-                Debug.Log( $"{_itemLavel.text}는 선택 불가능한 아이템이다.");
+                Debug.Log( $"선택 불가능한 아이템이다.");
                 OnUpdateSelection?.Invoke(-1);
                 return;
             }
             
             OnUpdateSelection?.Invoke(_index);
+            Select();
         }
         
-        public void Select()
+        private void Select()
         {
             if (!_isSelected)
             {
-                _isSelected = true;
-                _selectedOB.SetActive(true);
+                IsSelected = true;
             }
             else
             {
-                // 스킬 확정 사용
+                // 확정 선택
                 OnConfirmSelection?.Invoke(_index);
             }
-            
         }
 
         public void Clear()
         {
-            _isSelected = false;
-            _selectedOB.SetActive(false);
+            IsSelected = false;
+        }
+
+        private void SetSelectedMark(bool state)
+        {
+            _selectedOB.SetActive(state);
         }
     }
 }

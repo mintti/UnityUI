@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8041880407134195334}
   - component: {fileID: 8779979782282827924}
+  - component: {fileID: 2817575500589113842}
   - component: {fileID: 6219978696986175042}
   - component: {fileID: 8139473031004065912}
   - component: {fileID: 1834940058477600844}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SkillBTN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +51,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550010670787448712}
   m_CullTransparentMesh: 1
+--- !u!114 &2817575500589113842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5550010670787448712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0dd82501ebf499cb72c34854a31ae17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selectButton: {fileID: 1834940058477600844}
+  _itemLavel: {fileID: 3310450106533616707}
+  _selectionItem: {fileID: 6219978696986175042}
 --- !u!114 &6219978696986175042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4da33171204a008ac3666a5b41c748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectButton: {fileID: 1834940058477600844}
-  _itemLavel: {fileID: 3310450106533616707}
   _selectedOB: {fileID: 9103072684965025083}
 --- !u!114 &8139473031004065912
 MonoBehaviour:

@@ -1,29 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace ImUGUISample.Selector
 {
-    public class Target : MonoBehaviour
+    public class Target : MonoBehaviour, IPointerClickHandler 
     {
-        [SerializeField] private GameObject _targetMark;
-
-        public void Init()
-        {
-            UnassignTarget();
-        }
+        [SerializeField] private SelectionItem _item;
         
-        public void AssignTarget()
+        
+        
+        public void OnPointerClick(PointerEventData eventData)
         {
-            SetTargetUI(true);
+            _item.OnClicked();
         }
-
-        public void UnassignTarget()
-        {
-            SetTargetUI(false);
-        }
-
-
-        private void SetTargetUI(bool state) => _targetMark.SetActive(state);
     }
 }

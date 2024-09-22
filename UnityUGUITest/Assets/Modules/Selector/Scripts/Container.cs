@@ -11,6 +11,7 @@ namespace ImUGUISample.Selector
         
         [SerializeField] private Target[] _targets;
         [SerializeField] private ItemData[] dataArr;
+        [SerializeField] private Selector _targetSelector;
         
         public Target[] Targets => _targets;
         
@@ -19,17 +20,7 @@ namespace ImUGUISample.Selector
         public void Init(Main main)
         {
             _main = main;
-            
-            foreach (var target in _targets)
-            {
-                target.Init();
-            }
-        }
-
-        [Button("update")]
-        private void UpdateData()
-        {
-            _main.Selector.UpdateItem();
+            _targetSelector.Init();
         }
         
     }
